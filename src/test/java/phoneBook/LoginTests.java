@@ -88,7 +88,7 @@ public class LoginTests extends TestBase {
         app.getUserHelper().checkLogin();
     }
 
-    // тест
+    // 7 тест
     @Test(dataProvider = "loginFromCsv", dataProviderClass = DataProviders.class)
     public void loginExistedUserDataProviderFromCsvPositiveTest(User user) {
         app.getUserHelper().clickOnLoginLink();

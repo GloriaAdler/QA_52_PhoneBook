@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="RegressionTest" verbose="1">
+    <test name="PositiveTests">
+        <classes>
+            <class name="phoneBook.CreateAccountTests"/>
+            <class name="phoneBook.HomePageTests"/>
+            <class name="phoneBook.AddContactTests"/>
+            <class name="phoneBook.DeleteContactTests"/>
+            <class name="phoneBook.LoginTests">
+                <methods>
+                    <exclude name=".*Negative.*"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
+
+<!-- gradle clean regression - команда для терминала, чтоб прошел тест, после этого будет создана папка с отчетом о прохождении теста-->

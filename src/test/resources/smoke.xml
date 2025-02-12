@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="SmokeTests" verbose="1">
+    <test name="PositiveTests">
+        <classes>
+            <class name="phoneBook.CreateAccountTests">
+                    <methods>
+                        <include name=".*Positive.*"/> <!--проводим позитивные тесты                -->
+                    </methods>
+            </class>
+            <class name="phoneBook.LoginTests">
+                <methods>
+                    <exclude name=".*Negative.*"/> <!--исключаем негативные тесты                -->
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+<!-- gradle clean smoke - команда для терминала, чтоб прошел тест, после этого будет создана папка с отчетом о прохождении теста-->

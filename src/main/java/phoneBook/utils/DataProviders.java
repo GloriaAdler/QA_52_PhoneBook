@@ -3,6 +3,7 @@ package phoneBook.utils;
 import phoneBook.data.UserData;
 import phoneBook.model.Contact;
 import org.testng.annotations.DataProvider;
+import phoneBook.model.User;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,6 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class DataProviders {
+
     @DataProvider
     public static Object[][] loginDataProvider() {
         return new Object[][]{
@@ -48,6 +50,17 @@ public class DataProviders {
         list.add(new Object[]{new Contact().setName("Name4").setLastName("LastName4").setPhone("1234567893").setEmail("admin4@gmail.com").setAddress("Germany, Berlin4").setDescription("Description4")});
         return list.iterator();
     }
+
+    @DataProvider
+    public Iterator<Object[]> loginDataProviderIterator() {
+        List<Object[]> list = new ArrayList<>();
+        list.add(new Object[]{new User().setEmail("gloria2025@gmail.com").setPassword("Password@1")});
+        list.add(new Object[]{new User().setEmail("gloria2026@gmail.com").setPassword("Password@1")});
+        list.add(new Object[]{new User().setEmail("portishead2025@gmail.com").setPassword("Password@1")});
+        list.add(new Object[]{new User().setEmail("portishead2027@gmail.com").setPassword("Password@1")});
+        return list.iterator();
+    }
+
     @DataProvider
     public Iterator<Object[]> addContactFromCsv() throws IOException {
         // Создаем список для хранения данных для тестов
@@ -78,4 +91,23 @@ public class DataProviders {
         // Возвращаем итератор для списка объектов
         return list.iterator();
     }
+
+    @DataProvider
+    public Iterator<Object[]> loginFromCsv() throws IOException{
+        List<Object[]> list = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/contacts_for_login.csv"));
+        String line = reader.readLine();
+        while (line != null) {
+            String[] split = line.split(",");
+            list.add(new Object[]{new User()
+                    .setEmail(split[0])
+                    .setPassword(split[1])
+            });
+            line = reader.readLine();
+        }
+        reader.close();
+        return list.iterator();
+    }
+
+
 }

@@ -30,7 +30,7 @@ public class TestBase {
 
     @AfterMethod
     public void tearDown(Method method, ITestResult result) {
-        app.stop();
+       // app.stop();
         if (result.isSuccess()) {
             logger.info("Test is PASSED: [" + method.getName() + "]");
         } else {
@@ -40,7 +40,7 @@ public class TestBase {
 
     @AfterSuite(enabled = true)
     public void afterSuite() {
-        //app.stop();
+        app.stop();
     }
 }
 

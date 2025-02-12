@@ -1,5 +1,7 @@
 package phoneBook;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import phoneBook.data.UserData;
 import phoneBook.model.User;
 import phoneBook.utils.DataProviders;
@@ -8,8 +10,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 
 public class LoginTests extends TestBase {
+    WebDriver driver;
 
 
     @BeforeMethod
@@ -22,6 +26,7 @@ public class LoginTests extends TestBase {
         }
     }
 
+    //1 тест
     @Test(invocationCount = 1)
     public void loginExistedUserPositiveTest() {
         app.getUserHelper().clickOnLoginLink();
@@ -30,6 +35,8 @@ public class LoginTests extends TestBase {
         app.getUserHelper().clickOnLoginButton();
         app.getUserHelper().checkLogin();
     }
+
+    //2 тест
     @Test(invocationCount = 1)
     public void loginExistedUserPositiveTest3() {
         app.getUserHelper().clickOnLoginLink()
@@ -39,6 +46,7 @@ public class LoginTests extends TestBase {
                 .checkLogin();
     }
 
+    //3 тест
     @Test
     public void loginExistedDataUserPositiveTest() {
         app.getUserHelper().clickOnLoginLink();
@@ -48,6 +56,7 @@ public class LoginTests extends TestBase {
         app.getUserHelper().checkLogin();
     }
 
+    //4 тест
     @Test
     public void loginWOEmailNegativeTest() {
         app.getUserHelper().clickOnLoginLink();
@@ -59,11 +68,32 @@ public class LoginTests extends TestBase {
         Assert.assertTrue(app.getUserHelper().isAlertPresent());
     }
 
+    //5 тест
     @Test(dataProvider = "loginDataProvider", dataProviderClass = DataProviders.class)
     public void loginExistedUserDataProviderPositiveTest(String email, String password) {
         app.getUserHelper().clickOnLoginLink();
         app.getUserHelper().typeEmail(email);
         app.getUserHelper().typePassword(password);
+        app.getUserHelper().clickOnLoginButton();
+        app.getUserHelper().checkLogin();
+    }
+
+    //6 тест
+    @Test(dataProvider = "loginDataProviderIterator", dataProviderClass = DataProviders.class)
+    public void loginDataProviderIteratorPositiveTest(User user) {
+        app.getUserHelper().clickOnLoginLink();
+        app.getUserHelper().typeEmail(user.getEmail());
+        app.getUserHelper().typePassword(user.getPassword());
+        app.getUserHelper().clickOnLoginButton();
+        app.getUserHelper().checkLogin();
+    }
+
+    // тест
+    @Test(dataProvider = "loginFromCsv", dataProviderClass = DataProviders.class)
+    public void loginExistedUserDataProviderFromCsvPositiveTest(User user) {
+        app.getUserHelper().clickOnLoginLink();
+        app.getUserHelper().typeEmail(user.getEmail());
+        app.getUserHelper().typePassword(user.getPassword());
         app.getUserHelper().clickOnLoginButton();
         app.getUserHelper().checkLogin();
     }

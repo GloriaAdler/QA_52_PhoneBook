@@ -36,6 +36,6 @@ tasks.withType(JavaCompile) { //"таблетка" от русского язы�
 }
 
 registerTask('home', 'src/test/resources/home.xml') //когда нужно будет создать новый проект, эту строку нужно копировать и заменить слово home на название проекта
-registerTask('smoke', 'src/test/resources/smoke.xml')
+registerTask('smoky', 'src/test/resources/smoke.xml')
 registerTask('regression', 'src/test/resources/regression.xml')
 
